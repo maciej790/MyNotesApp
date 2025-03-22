@@ -9,7 +9,6 @@ function App() {
 
   const [userToken, setUserToken] = useState(localStorage.getItem('user'));
 
-
   useEffect(() => {
     if (userToken) {
       localStorage.setItem("user", userToken);
