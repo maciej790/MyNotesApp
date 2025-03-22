@@ -17,7 +17,7 @@ router.get('/', (req, res) =>{
 
 })
 
-router.get('/create', checkIfNoteExist, (req, res) =>{
+router.post('/create', checkIfNoteExist, (req, res) =>{
     const userId = req.user.userId;
     const {title, content, priority, created_at} = req.body;
 
@@ -27,11 +27,11 @@ router.get('/create', checkIfNoteExist, (req, res) =>{
     })
 })
 
-router.get('/update/:id', (req, res) =>{
+router.put('/update/:id', (req, res) =>{
     res.send(`Update note by note id: ${req.params.id}`);
 })
 
-router.get('/delete/:id', (req, res) =>{
+router.delete('/delete/:id', (req, res) =>{
     res.send(`Delete note by note id: ${req.params.id}`);
 })
 
