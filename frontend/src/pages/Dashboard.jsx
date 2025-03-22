@@ -5,6 +5,9 @@ const Dashboard = ({setUserToken}) => {
 
   const [notes, setNotes] = useState();
   const [messageError, setMessageError] = useState();
+  const [title, setTitle] = useState("")
+  const [content, setContent] = useState("")
+  const [priority, setPriority] = useState("")
 
   const navigate = useNavigate();
 
@@ -35,6 +38,52 @@ const Dashboard = ({setUserToken}) => {
 
   }
 
+  const handleCreateNote = async (e) =>{
+    e.preventDefault();
+
+    const date = new Date().toJSON()
+
+    const noteData = {
+      title,
+      content,
+      priority,
+      date
+    };
+
+    const token = localStorage.getItem('user')
+    const url = 'http://localhost:3000/notes/create';
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(noteData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Błąd podczas dodawania notatki');
+      }
+
+      const result = await response.json();
+      setMessage('Notatka dodana pomyślnie!');
+      console.log('Sukces:', result);
+      
+      // Opcjonalnie: Możesz dodać resetowanie formularza
+      setTitle('');
+      setContent('');
+      setPriority(1);
+
+    } catch (error) {
+      console.error('Błąd:', error);
+      setMessage('Wystąpił błąd podczas dodawania notatki.');
+    }
+  };
+
+  
+
   useEffect(() =>{
     getAllNotes();
   }, [notes])
@@ -43,6 +92,35 @@ const Dashboard = ({setUserToken}) => {
     <div>
       Dashboard
       <button onClick={handleLogout}>Logout</button>
+      <form onSubmit={handleCreateNote} className="flex flex-col gap-2">
+        <input
+          type="text"
+          placeholder="Note title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="border p-2 rounded"
+          required
+        />
+        <input
+          type="text"
+          placeholder="Content"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          className="border p-2 rounded"
+          required
+        />
+        <input
+          type="number"
+          placeholder="Priority"
+          value={priority}
+          onChange={(e) => setPriority(e.target.value)}
+          className="border p-2 rounded"
+          required
+        />
+        <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+          Stwórz notatkę
+        </button>
+      </form>
       {messageError ? messageError : null}
       {notes ?  <ul>
         {notes.map(note => (
