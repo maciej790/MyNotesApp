@@ -9,16 +9,18 @@ const SECRET_KEY = 'secret';
 
 router.post('/signUp', checkLogin(true), async (req, res) =>{
     const {login, password} = req.body;
+    if(!login || !password) return res.status(400).json('Wypełnij wszystkie pola!');
     const hashedPassword = await bcrypt.hash(password, 10);
     db.query("INSERT INTO `users`(`login`, `password`) VALUES (?,?)", [login, hashedPassword], (err, result) =>{
         if (err) return res.status(500).json('Błąd serwera');
-        if (result) return res.status(201).json('Zarejestrowano pomyślnie!');
+        if (result) return res.status(200).json('Zarejestrowano pomyślnie!');
     })
 })
 
 router.post('/signIn', checkLogin(false), async (req, res) =>{
     const hashedPassword = req.user.password;
     const {password} = req.body;
+    if(!password) return res.status(400).json('Wypełnij wszystkie pola!');
     const isPasswordMatch = await bcrypt.compare(password, hashedPassword);
     if (!isPasswordMatch) return res.status(401).json('Błędny login lub hasło!');
     const userId = req.user.id;
