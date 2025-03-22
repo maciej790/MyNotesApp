@@ -6,6 +6,14 @@ const notes = require('./routes/notes');
 const app = express()
 const port = 3000
 
+const cors = require("cors");
+
+app.use(cors({
+    origin: "*", // Dostosuj do portu frontendu
+    credentials: true
+  }));
+
+
 app.use(bodyParser.json());
 
 app.use('/auth', auth);
