@@ -7,13 +7,13 @@ import SignUp from './pages/SignUp'
 
 function App() {
 
-  const [userToken, setUserToken] = useState(localStorage.getItem('user'));
+  const [userToken, setUserToken] = useState(sessionStorage.getItem('user'));
 
   useEffect(() => {
     if (userToken) {
-      localStorage.setItem("user", userToken);
+      sessionStorage.setItem("user", userToken);
     } else {
-      localStorage.removeItem("user");
+      sessionStorage.removeItem("user");
     }
   }, [userToken]);
 

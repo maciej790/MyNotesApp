@@ -1,0 +1,54 @@
+.noteCard {
+  width: 100%;
+  margin: 40px 0 40px 0;
+  background: white;
+  min-height: 200px;
+
+  .noteCard__top {
+    width: 100%;
+    padding: 15px;
+    background: rgb(255, 241, 89);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .noteCard__top--left {
+      display: flex;
+      align-items: center;
+    }
+
+    .noteCard__top--right {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      .noteCard__top__delete {
+        width: 30px;
+        height: 30px;
+        margin: 0 0 0 25px;
+      }
+
+      .noteCard__top__priority--green {
+        padding: 15px;
+        border-radius: 100px;
+        background-color: rgb(103, 237, 103);
+      }
+
+      .noteCard__top__priority--orange {
+        @extend .noteCard__top__priority--green;
+        background-color: rgb(255, 153, 21);
+      }
+
+      .noteCard__top__priority--red {
+        @extend .noteCard__top__priority--green;
+        background-color: rgb(244, 66, 66);
+      }
+    }
+  }
+
+  .noteCard__bottom {
+    font-size: 1.2rem;
+    text-align: justify;
+    padding: 20px;
+  }
+}

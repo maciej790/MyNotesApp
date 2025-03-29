@@ -29,7 +29,7 @@ const SignIn = ({setUserToken}) => {
             if(response.status != 200){
                 setMessage(data);
             }else{
-                localStorage.setItem('user', JSON.stringify(data))
+                sessionStorage.setItem('user', JSON.stringify(data))
                 setUserToken(data);
                 navigate('/dashboard');
             }
