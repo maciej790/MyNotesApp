@@ -1,40 +1,40 @@
-import '../styles/NoteCard.scss'
-import bin from '../assets/bin.png';
+import "../styles/NoteCard.scss";
+import bin from "../assets/bin.png";
+import edit from "../assets/edit.png";
 
-function NoteCard({note}) {
+function NoteCard({ note }) {
+  let priorityClass = "priority-red"; // Domyślnie czerwony
 
-    let priorityColor = null;
+  if (note.priority === 1) {
+    priorityClass = "priority-green";
+  } else if (note.priority === 2) {
+    priorityClass = "priority-orange";
+  }
 
-    if(note.priority === 1){
-        priorityColor = 'green';
-    }else if(note.priority === 2){
-        priorityColor = 'orange';
-    }else{
-       priorityColor = 'red';
-    }
+  // Formatowanie daty na czytelniejszy format
+  const formattedDate = new Date(note.created_at).toLocaleDateString("pl-PL", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
-    <div className='noteCard'>
-        <div className="noteCard__top">
-            <div className="noteCard__top--left">
-                <div className="noteCard__title--title">
-                    <h3>
-                    {note.title}
-                    </h3>
-                </div>
-            </div>
-            <div className="noteCard__top--right">
-                <div className={`noteCard__top__priority--${priorityColor}`}></div>
-                    <div className="noteCard__top__delete">
-                        <img src={bin} style={{width: "100%", height: "100%"}} />
-                    </div>
-            </div>
+    <div className={`noteCard ${priorityClass}`}>
+      <div className="noteCard__header">
+        <div className="noteCard__edit">
+          <img src={edit} alt="Edit" />
         </div>
-        <div className="noteCard__bottom">
-                {note.content}
+        <h3 className="noteCard__title">{note.title}</h3>
+        <div className="noteCard__delete">
+          <img src={bin} alt="Delete" />
         </div>
+      </div>
+      <div className="noteCard__content">
+        <p className="noteCard__text">{note.content}</p>
+        <span className="noteCard__date">📅 {formattedDate}</span>
+      </div>
     </div>
-  )
+  );
 }
 
-export default NoteCard
+export default NoteCard;

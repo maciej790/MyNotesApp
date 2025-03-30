@@ -1,0 +1,91 @@
+.filterNotes {
+  width: 100%;
+  padding: 20px;
+  border-radius: 8px;
+  //box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 30px 0 30px 0;
+  text-align: left;
+
+  .filterNotes__buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start; /* Upewnienie się, że przyciski będą obok siebie */
+  }
+
+  .filterNotes__priorityButtons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+    justify-content: flex-start; /* Zapewni, że przyciski będą obok siebie */
+  }
+
+  .filterNotes__button {
+    padding: 10px 16px;
+    background-color: #007bff; /* Jasnoszare tło przycisków */
+    color: #ffffff;
+    border: 1px solid #ddd; /* Dodanie cienkiej ramki, aby przyciski były wyraźniejsze */
+    border-radius: 100px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: #007bff;
+      transform: scale(1.05); /* Powiększenie przycisku po najechaniu */
+    }
+
+    &.priority-green {
+      background-color: rgb(103, 237, 103);
+      border-color: #7ad07a;
+      color: #fff;
+    }
+
+    &.priority-orange {
+      background-color: rgb(255, 153, 21);
+      border-color: #ff9900;
+      color: #fff;
+    }
+
+    &.priority-red {
+      background-color: rgb(244, 66, 66);
+      border-color: #f44336;
+      color: #fff;
+    }
+  }
+
+  .filterNotes__clearButton {
+    padding: 10px 16px;
+    background-color: #ffffff; /* Czerwony przycisk do usuwania filtrów */
+    color: rgb(0, 0, 0);
+    border: 1px solid #ffffff;
+    border-radius: 100px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin: 15px 0 0 0;
+
+    &:hover {
+      background-color: #e53935;
+      transform: scale(1.05);
+      color: white;
+    }
+  }
+
+  /* Responsywność */
+  @media (max-width: 768px) {
+    .filterNotes__buttons,
+    .filterNotes__priorityButtons {
+      flex-direction: row;
+      justify-content: flex-start; /* Upewnienie się, że przyciski pozostaną w jednej linii */
+    }
+
+    .filterNotes__button {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.filterNotes_title {
+  padding: 10px 0 15px 0;
+  color: #555;
+}

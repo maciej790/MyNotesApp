@@ -1,0 +1,114 @@
+.createNoteForm__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(
+    0,
+    0,
+    0,
+    0.4
+  ); // Lekki overlay, ale można usunąć jeśli nie chcesz
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.createNoteForm {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+  width: 95%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  z-index: 1001;
+}
+
+.createNoteForm__close {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  align-self: flex-end;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0.7;
+
+  &:hover {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+.createNoteForm label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.createNoteForm input,
+.createNoteForm select,
+.createNoteForm textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fff;
+  transition: border 0.3s;
+  color: rgb(0, 0, 0);
+
+  &:focus {
+    border: 1px solid #007bff;
+    outline: none;
+  }
+}
+
+.createNoteForm textarea {
+  min-height: 100px;
+  resize: none;
+}
+
+.createNoteForm select {
+  cursor: pointer;
+}
+
+.createNoteForm button {
+  background: #007bff;
+  color: white;
+  padding: 12px;
+  margin: 40px 0 0 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+
+  &:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+  }
+}
+
+.createNoteForm__message {
+  color: #0056b3;
+  font-size: 1.2rem;
+  text-align: center;
+}

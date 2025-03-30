@@ -1,22 +1,22 @@
-import React from 'react'
-import '../styles/SideBar.scss';
-import add from '../assets/add.png';
-import right from '../assets/right.png'
+import React from "react";
+import "../styles/SideBar.scss";
+import add from "../assets/add.png";
+import logoutIcon from "../assets/right.png";
 
-function SideBar({setIsCreateButtonClicked, handleLogout}) {
+function SideBar({ setIsCreateButtonClicked, handleLogout }) {
   return (
-    <nav className='sideBar'>
-        <div className="sideBar__icon--create" onClick={() => setIsCreateButtonClicked(true)}>
-            <img src={add} style={{width: "100%", height: "100%", }}/>
-        </div>
-        <div className="sideBar__logo">
-            <h1>MyNotesApp</h1>
-        </div>
-        <div className="sideBar__icon--signout" onClick={handleLogout}>
-            <img src={right} style={{width: "100%", height: "100%", }}/>
-        </div>
+    <nav className="sideBar">
+      <div className="sideBar__icon sideBar__icon--create" onClick={() => setIsCreateButtonClicked(true)}>
+        <img src={add} alt="Add Note" />
+      </div>
+      <div className="sideBar__logo">
+        <h1>MyNotesApp</h1>
+      </div>
+      <div className="sideBar__icon sideBar__icon--signout" onClick={handleLogout}>
+        <img src={logoutIcon} alt="Logout" />
+      </div>
     </nav>
-  )
+  );
 }
 
-export default SideBar
+export default SideBar;

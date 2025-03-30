@@ -1,54 +1,91 @@
 .noteCard {
-  width: 100%;
-  margin: 40px 0 40px 0;
+  position: relative;
+  width: 90%;
+  min-height: 180px;
+  padding: 20px;
   background: white;
-  min-height: 200px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  overflow: hidden;
+  margin: 30px;
 
-  .noteCard__top {
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 15px;
-    background: rgb(255, 241, 89);
+    height: 8px;
+  }
+
+  .noteCard__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+  }
 
-    .noteCard__top--left {
-      display: flex;
-      align-items: center;
+  .noteCard__title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .noteCard__content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .noteCard__text {
+    font-size: 1rem;
+    color: #555;
+  }
+
+  .noteCard__delete,
+  .noteCard__edit {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s, transform 0.2s;
+
+    img {
+      width: 100%;
+      height: 100%;
     }
 
-    .noteCard__top--right {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-
-      .noteCard__top__delete {
-        width: 30px;
-        height: 30px;
-        margin: 0 0 0 25px;
-      }
-
-      .noteCard__top__priority--green {
-        padding: 15px;
-        border-radius: 100px;
-        background-color: rgb(103, 237, 103);
-      }
-
-      .noteCard__top__priority--orange {
-        @extend .noteCard__top__priority--green;
-        background-color: rgb(255, 153, 21);
-      }
-
-      .noteCard__top__priority--red {
-        @extend .noteCard__top__priority--green;
-        background-color: rgb(244, 66, 66);
-      }
+    &:hover {
+      opacity: 1;
+      transform: scale(1.1);
     }
   }
 
-  .noteCard__bottom {
-    font-size: 1.2rem;
-    text-align: justify;
-    padding: 20px;
+  .noteCard__date {
+    position: absolute;
+    bottom: 10px; /* Odstęp od dolnej krawędzi */
+    left: 10px; /* Odstęp od lewej krawędzi */
+    font-size: 0.85rem;
+    color: #777;
   }
+}
+
+/* Pasek priorytetu */
+.priority-green::before {
+  background-color: rgb(103, 237, 103);
+}
+
+.priority-orange::before {
+  background-color: rgb(255, 153, 21);
+}
+
+.priority-red::before {
+  background-color: rgb(244, 66, 66);
 }
